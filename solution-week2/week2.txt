@@ -1,0 +1,110 @@
+SQLite version 3.42.0 2023-05-16 12:36:15
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+
+[1]OR[2].CREATE TABLE ,INSERT RECORDS
+-------------------------------------
+   
+    (1) STUD TABLE
+
+    sqlite> create table stud
+       ...> (
+    (x1...> id int primary key,
+    (x1...> name text
+    (x1...> );
+     
+    sqlite> insert into stud values(111,'kanha'),
+    ...> (112,'krishna'),
+    ...> (113,'kishan'),
+    ...> (114,'mohan'),
+    ...> (115,'harihar'),
+    ...> (116,'gopal'),
+    ...> (117,'madhav'),
+    ...> (118,'govind'),
+    ...> (119,'kesav'),
+    ...> (120,'krish');
+
+   sqlite> select * from stud;
+           111|kanha
+           112|krishna
+           113|kishan
+           114|mohan
+           115|harihar
+           116|gopal
+           117|madhav
+           118|govind
+           119|kesav
+           120|krish
+
+  (2)STUD_DETAILS TABLE
+
+
+   sqlite> create table stud_details
+      ...> (
+   (x1...> id int REFERENCES stud(id),
+   (x1...> city text,m_no int
+   (x1...> );
+  
+
+   sqlite> insert into stud_details values(111,'navsari',1234567890),
+      ...> (112,'surat',9988776655),
+      ...> (113,'bardoli',5252552523),
+      ...> (114,'baleshwar',3243546576),
+      ...> (115,'surat',6576766543),
+      ...> (116,'ahemdabad',9988776655),
+      ...> (117,'bilimora',9090989796),
+      ...> (118,'surat',7896543211),
+      ...> (119,'bihar',9091933345),
+      ...> (120,'navsari',9087654321);
+
+   sqlite> select * from stud_details;
+           111|navsari|1234567890
+           112|surat|9988776655
+           113|bardoli|5252552523
+           114|baleshwar|3243546576
+           115|surat|6576766543
+           116|ahemdabad|9988776655
+           117|bilimora|9090989796
+           118|surat|7896543211
+           119|bihar|9091933345
+           120|navsari|9087654321
+
+[3].DISPLAY WHOSE STUDENT COME FROM THE SURAT CITY.
+---------------------------------------------------
+   
+    sqlite> select s.id,s.name,sd.city,sd.m_no from stud s, stud_details sd
+       ...> where s.id=sd.id and sd.city='surat';
+
+       O/P  112|krishna|surat|9988776655
+            115|harihar|surat|6576766543
+            118|govind|surat|7896543211
+
+[4].DISPLAY STUDENT DETAILS WHOSE CITY NAME STARTS WITH 'B'.
+-----------------------------------------------------------
+
+    sqlite> select s.id,s.name,sd.city,sd.m_no from stud s, stud_details sd
+       ...> where s.id=sd.id and sd.city like 'b%';
+
+       0/P  113|kishan|bardoli|5252552523
+            114|mohan|baleshwar|3243546576
+            117|madhav|bilimora|9090989796
+            119|kesav|bihar|9091933345
+
+[5].UPDATE MOBILENO WHO ARE COMMING FROM 'SURAT'.
+-------------------------------------------------  
+ 
+    sqlite> update stud_details set m_no=5356567657
+       ...> where city='surat';
+
+    sqlite> select * from stud_details;
+            111|navsari|1234567890
+            112|surat|5356567657
+            113|bardoli|5252552523
+            114|baleshwar|3243546576
+            115|surat|5356567657
+            116|ahemdabad|9988776655
+            117|bilimora|9090989796
+            118|surat|5356567657
+            119|bihar|9091933345
+            120|navsari|9087654321
