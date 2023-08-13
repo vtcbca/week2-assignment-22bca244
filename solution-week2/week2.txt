@@ -73,7 +73,7 @@ Use ".open FILENAME" to reopen on a persistent database.
 [3].DISPLAY WHOSE STUDENT COME FROM THE SURAT CITY.
 ---------------------------------------------------
    
-    sqlite> select s.id,s.name,sd.city,sd.m_no from stud s, stud_details sd
+    sqlite> select s.id,s.name,sd.city,sd.m_no from stud , stud_details sd
        ...> where s.id=sd.id and sd.city='surat';
 
        O/P  112|krishna|surat|9988776655
