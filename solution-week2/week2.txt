@@ -83,7 +83,7 @@ Use ".open FILENAME" to reopen on a persistent database.
 [4].DISPLAY STUDENT DETAILS WHOSE CITY NAME STARTS WITH 'B'.
 -----------------------------------------------------------
 
-    sqlite> select s.id,s.name,sd.city,sd.m_no from stud s, stud_details sd
+    sqlite> select s.id,s.name,sd.city,sd.m_no from stud , stud_details sd
        ...> where s.id=sd.id and sd.city like 'b%';
 
        0/P  113|kishan|bardoli|5252552523
